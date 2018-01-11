@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://www.17sucai.com/preview/301743/2017-07-03/demo/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>手机移动端购物网站常用省市区三级收货地址jQuery特效代码</title>
+    <meta name="keywords" content="手机移动端,购物网站,常用,省市区三级,收货地址,jQuery特效,特效代码">
+    <meta name="description" content="手机移动端购物网站常用省市区三级收货地址jQuery特效代码。"> 
+    <meta name="author" content="js代码">
+    <meta name="copyright" content="js代码">
+    <link rel="stylesheet" href="./index_files/bootstrap.min.css">
+<style type="text/css">.picker{display:none;position:fixed;top:0;z-index:100;width:100%;height:100%;overflow:hidden;text-align:center;font-family:PingFang SC,STHeitiSC-Light,Helvetica-Light,arial,sans-serif;font-size:14px;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.picker .picker-mask{position:absolute;z-index:500;width:100%;height:100%;transition:all .5s;-webkit-transition:all .5s;background:transparent;opacity:0}.picker .picker-mask.show{background:rgba(0,0,0,.6);opacity:1}.picker .picker-panel{position:absolute;z-index:600;bottom:0;width:100%;height:243px;background:#fff;transform:translateY(243px);-webkit-transform:translateY(243px);transition:all .5s;-webkit-transition:all .5s}.picker .picker-panel.show{transform:translateY(0);-webkit-transform:translateY(0)}.picker .picker-panel .picker-choose{position:relative;height:50px;color:#878787;font-size:14px}.picker .picker-panel .picker-choose .picker-title{line-height:50px;font-size:19px;text-align:center;color:#333}.picker .picker-panel .picker-choose .cancel,.picker .picker-panel .picker-choose .confirm{position:absolute;padding:10px;top:6px}.picker .picker-panel .picker-choose .confirm{right:0;color:#fa8919}.picker .picker-panel .picker-choose .cancel{left:0}.picker .picker-panel .picker-content{position:relative}.picker .picker-panel .picker-content .mask-bottom,.picker .picker-panel .picker-content .mask-top{position:absolute;z-index:10;width:100%;height:68px;pointer-events:none;transform:translateZ(0);-webkit-transform:translateZ(0)}.picker .picker-panel .picker-content .mask-top{top:0;background:-webkit-gradient(linear,left bottom,left top,from(hsla(0,0%,100%,.4)),to(hsla(0,0%,100%,.8)));background:-o-linear-gradient(bottom,hsla(0,0%,100%,.4),hsla(0,0%,100%,.8))}.picker .picker-panel .picker-content .mask-top:after,.picker .picker-panel .picker-content .mask-top:before{display:block;position:absolute;border-top:1px solid #ccc;left:0;width:100%;content:" "}.picker .picker-panel .picker-content .mask-top:before{display:none;top:0}.picker .picker-panel .picker-content .mask-top:after{display:block;bottom:0}.picker .picker-panel .picker-content .mask-bottom{bottom:0;background:-webkit-gradient(linear,left top,left bottom,from(hsla(0,0%,100%,.4)),to(hsla(0,0%,100%,.8)));background:-o-linear-gradient(top,hsla(0,0%,100%,.4),hsla(0,0%,100%,.8))}.picker .picker-panel .picker-content .mask-bottom:after,.picker .picker-panel .picker-content .mask-bottom:before{display:block;position:absolute;border-top:1px solid #ccc;left:0;width:100%;content:" "}.picker .picker-panel .picker-content .mask-bottom:before{display:block;top:0}.picker .picker-panel .picker-content .mask-bottom:after{display:none;bottom:0}.picker .picker-panel .wheel-wrapper{display:-ms-flexbox;display:-webkit-box;display:flex;padding:0 10px}.picker .picker-panel .wheel-wrapper .wheel{-ms-flex:1 1 1e-9px;-webkit-box-flex:1;flex:1;flex-basis:1e-9px;width:1%;height:173px;overflow:hidden;font-size:21px}.picker .picker-panel .wheel-wrapper .wheel .wheel-scroll{margin-top:68px;line-height:36px}.picker .picker-panel .wheel-wrapper .wheel .wheel-scroll .wheel-item{height:36px;overflow:hidden;white-space:nowrap;color:#333}.picker .picker-footer{height:20px}@media (-webkit-min-device-pixel-ratio:1.5),(min-device-pixel-ratio:1.5){.border-1px:after,.border-1px:before{-webkit-transform:scaleY(.7);-webkit-transform-origin:0 0;transform:scaleY(.7)}.border-1px:after{-webkit-transform-origin:left bottom}}@media (-webkit-min-device-pixel-ratio:2),(min-device-pixel-ratio:2){.border-1px:after,.border-1px:before{-webkit-transform:scaleY(.5);transform:scaleY(.5)}}</style></head>
+<body>
+<div class="container">
+    
+    <div class="row main">
+        <div class="col-md-12">
+            <div class="row" style="margin-top: 30px; text-align: center;">
+               
+                    <a href="http://www.17sucai.com/preview/301743/2017-07-03/demo/index.html#" class="btn btn-info btn-lg active" role="button" id="sel_city">点击选取省市区县</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="./index_files/picker.min.js"></script>
+<script src="./index_files/city.js"></script>
+<script>
+var nameEl = document.getElementById('sel_city');
+
+var first = []; /* 省，直辖市 */
+var second = []; /* 市 */
+var third = []; /* 镇 */
+
+var selectedIndex = [0, 0, 0]; /* 默认选中的地区 */
+
+var checked = [0, 0, 0]; /* 已选选项 */
+
+function creatList(obj, list){
+  obj.forEach(function(item, index, arr){
+  var temp = new Object();
+  temp.text = item.name;
+  temp.value = index;
+  list.push(temp);
+  })
+}
+
+creatList(city, first);
+
+if (city[selectedIndex[0]].hasOwnProperty('sub')) {
+  creatList(city[selectedIndex[0]].sub, second);
+} else {
+  second = [{text: '', value: 0}];
+}
+
+if (city[selectedIndex[0]].sub[selectedIndex[1]].hasOwnProperty('sub')) {
+  creatList(city[selectedIndex[0]].sub[selectedIndex[1]].sub, third);
+} else {
+  third = [{text: '', value: 0}];
+}
+
+var picker = new Picker({
+    data: [first, second, third],
+  selectedIndex: selectedIndex,
+    title: '地址选择'
+});
+
+picker.on('picker.select', function (selectedVal, selectedIndex) {
+  var text1 = first[selectedIndex[0]].text;
+  var text2 = second[selectedIndex[1]].text;
+  var text3 = third[selectedIndex[2]] ? third[selectedIndex[2]].text : '';
+
+    nameEl.innerText = text1 + ' ' + text2 + ' ' + text3;
+});
+
+picker.on('picker.change', function (index, selectedIndex) {
+  if (index === 0){
+    firstChange();
+  } else if (index === 1) {
+    secondChange();
+  }
+
+  function firstChange() {
+    second = [];
+    third = [];
+    checked[0] = selectedIndex;
+    var firstCity = city[selectedIndex];
+    if (firstCity.hasOwnProperty('sub')) {
+      creatList(firstCity.sub, second);
+
+      var secondCity = city[selectedIndex].sub[0]
+      if (secondCity.hasOwnProperty('sub')) {
+        creatList(secondCity.sub, third);
+      } else {
+        third = [{text: '', value: 0}];
+        checked[2] = 0;
+      }
+    } else {
+      second = [{text: '', value: 0}];
+      third = [{text: '', value: 0}];
+      checked[1] = 0;
+      checked[2] = 0;
+    }
+
+    picker.refillColumn(1, second);
+    picker.refillColumn(2, third);
+    picker.scrollColumn(1, 0)
+    picker.scrollColumn(2, 0)
+  }
+
+  function secondChange() {
+    third = [];
+    checked[1] = selectedIndex;
+    var first_index = checked[0];
+    if (city[first_index].sub[selectedIndex].hasOwnProperty('sub')) {
+      var secondCity = city[first_index].sub[selectedIndex];
+      creatList(secondCity.sub, third);
+      picker.refillColumn(2, third);
+      picker.scrollColumn(2, 0)
+    } else {
+      third = [{text: '', value: 0}];
+      checked[2] = 0;
+      picker.refillColumn(2, third);
+      picker.scrollColumn(2, 0)
+    }
+  }
+
+});
+
+picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
+  console.log(selectedVal);
+  console.log(selectedIndex);
+});
+
+nameEl.addEventListener('click', function () {
+    picker.show();
+});
+</script><div class="picker">
+  <div class="picker-mask mask-hook"></div>
+  <div class="picker-panel panel-hook">
+    <div class="picker-choose choose-hook">
+      <span class="cancel cancel-hook">取消</span>
+      <span class="confirm confirm-hook">确定</span>
+      <h1 class="picker-title">地址选择</h1>
+    </div>
+    <div class="picker-content">
+      <div class="mask-top border-1px"></div>
+      <div class="mask-bottom border-1px"></div>
+      <div class="wheel-wrapper wheel-wrapper-hook">
+        
+          <div class="wheel wheel-hook">
+            <ul class="wheel-scroll wheel-scroll-hook">
+              
+                <li class="wheel-item" data-val="0">北京</li>
+              
+                <li class="wheel-item" data-val="1">广东</li>
+              
+                <li class="wheel-item" data-val="2">上海</li>
+              
+                <li class="wheel-item" data-val="3">天津</li>
+              
+                <li class="wheel-item" data-val="4">重庆</li>
+              
+                <li class="wheel-item" data-val="5">辽宁</li>
+              
+                <li class="wheel-item" data-val="6">江苏</li>
+              
+                <li class="wheel-item" data-val="7">湖北</li>
+              
+                <li class="wheel-item" data-val="8">四川</li>
+              
+                <li class="wheel-item" data-val="9">陕西</li>
+              
+                <li class="wheel-item" data-val="10">河北</li>
+              
+                <li class="wheel-item" data-val="11">山西</li>
+              
+                <li class="wheel-item" data-val="12">河南</li>
+              
+                <li class="wheel-item" data-val="13">吉林</li>
+              
+                <li class="wheel-item" data-val="14">黑龙江</li>
+              
+                <li class="wheel-item" data-val="15">内蒙古</li>
+              
+                <li class="wheel-item" data-val="16">山东</li>
+              
+                <li class="wheel-item" data-val="17">安徽</li>
+              
+                <li class="wheel-item" data-val="18">浙江</li>
+              
+                <li class="wheel-item" data-val="19">福建</li>
+              
+                <li class="wheel-item" data-val="20">湖南</li>
+              
+                <li class="wheel-item" data-val="21">广西</li>
+              
+                <li class="wheel-item" data-val="22">江西</li>
+              
+                <li class="wheel-item" data-val="23">贵州</li>
+              
+                <li class="wheel-item" data-val="24">云南</li>
+              
+                <li class="wheel-item" data-val="25">西藏</li>
+              
+                <li class="wheel-item" data-val="26">海南</li>
+              
+                <li class="wheel-item" data-val="27">甘肃</li>
+              
+                <li class="wheel-item" data-val="28">宁夏</li>
+              
+                <li class="wheel-item" data-val="29">青海</li>
+              
+                <li class="wheel-item" data-val="30">新疆</li>
+              
+                <li class="wheel-item" data-val="31">香港</li>
+              
+                <li class="wheel-item" data-val="32">澳门</li>
+              
+                <li class="wheel-item" data-val="33">台湾</li>
+              
+                <li class="wheel-item" data-val="34">海外</li>
+              
+                <li class="wheel-item" data-val="35">其他</li>
+              
+            </ul>
+          </div>
+        
+          <div class="wheel wheel-hook">
+            <ul class="wheel-scroll wheel-scroll-hook">
+              
+                <li class="wheel-item" data-val="0">东城区</li>
+              
+                <li class="wheel-item" data-val="1">西城区</li>
+              
+                <li class="wheel-item" data-val="2">崇文区</li>
+              
+                <li class="wheel-item" data-val="3">宣武区</li>
+              
+                <li class="wheel-item" data-val="4">朝阳区</li>
+              
+                <li class="wheel-item" data-val="5">海淀区</li>
+              
+                <li class="wheel-item" data-val="6">丰台区</li>
+              
+                <li class="wheel-item" data-val="7">石景山区</li>
+              
+                <li class="wheel-item" data-val="8">房山区</li>
+              
+                <li class="wheel-item" data-val="9">通州区</li>
+              
+                <li class="wheel-item" data-val="10">顺义区</li>
+              
+                <li class="wheel-item" data-val="11">昌平区</li>
+              
+                <li class="wheel-item" data-val="12">大兴区</li>
+              
+                <li class="wheel-item" data-val="13">怀柔区</li>
+              
+                <li class="wheel-item" data-val="14">平谷区</li>
+              
+                <li class="wheel-item" data-val="15">门头沟区</li>
+              
+                <li class="wheel-item" data-val="16">密云县</li>
+              
+                <li class="wheel-item" data-val="17">延庆县</li>
+              
+                <li class="wheel-item" data-val="18">其他</li>
+              
+            </ul>
+          </div>
+        
+          <div class="wheel wheel-hook">
+            <ul class="wheel-scroll wheel-scroll-hook">
+              
+                <li class="wheel-item" data-val="0"></li>
+              
+            </ul>
+          </div>
+        
+      </div>
+    </div>
+    <div class="picker-footer footer-hook"></div>
+  </div>
+</div>
+
+</body></html>
