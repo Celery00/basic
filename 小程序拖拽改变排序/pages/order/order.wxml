@@ -1,0 +1,9 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+  <view bindtap="box" class="box" >
+  <view wx:for="{{content}}">
+  
+  <view bindtouchmove="move" bindtouchstart="movestart" bindtouchend="moveend" data-index="{{item.id}}" data-main="{{mainx}}" class="main {{mainx == item.id? 'mainmove':'mainend'}}" style="left:{{start.x}}px; top:{{start.y}}px">{{item.content}}你好吗</view>
+  </view>
+  </view>
+</view>
