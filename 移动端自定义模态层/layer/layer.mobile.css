@@ -1,0 +1,145 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.layer a {
+	color: #555;
+	text-decoration: none;
+}
+
+.layer-flex {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.layer a:focus {
+	outline: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.layer .layer-mask,
+.layer .layer-content,
+.layer-loading {
+	position: fixed;
+}
+
+.layer .layer-mask {
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba(0,0,0,.4);
+	z-index: 9028;
+}
+
+.layer .layer-content {
+	top: 50%;
+	width: 280px;
+	background-color: white;
+	border-radius: 8px;
+	left: 50%;
+	margin-left: -140px;
+	transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	z-index: 9030;
+}
+
+.layer .layer-header {
+	padding: 20px 15px 0px 15px;
+	font-size: 20px;
+	color: #342343;
+	text-align: center;
+}
+
+.layer .layer-body {
+	padding: 15px 15px 20px 15px;
+	font-size: 16px;
+	color: #654654;
+}
+
+
+.layer .layer-footer {
+	border-top: 1px solid #e5e5e5;
+	position: relative;
+}
+
+.layer .layer-footer.layer-flex:after {
+	position: absolute;
+	content: ' ';
+	top: 0px;
+	left: 50%;
+	height: 100%;
+	width: 1px;
+	background-color: #eee;
+}
+
+.layer .layer-footer .layer-btn {
+	display: block;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	color: #9a9a9a;
+}
+
+.layer .layer-footer.layer-flex .layer-btn {
+	width: 50%;
+}
+
+.layer .layer-footer .layer-btn_primary {
+	color: #00cd00;
+}
+
+.layer-loading {
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 9023;
+}
+
+.layer-loading .load-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 120px;
+	transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	background: url('./loading.gif') no-repeat center;
+	background-size: 130%;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.layer-loading .load-text {
+	padding: 90px 0px 10px;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+}
+
+.layer-prompt {
+	position: fixed;
+	bottom: 25%;
+	left: 50%;
+	width: 260px;
+	font-size: 14px;
+	color: white;
+	transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	text-align: center;
+	z-index: 62;
+}
+
+.layer-prompt .layer-content {
+	background: rgba(0,0,0,.75);
+	padding: 12px 15px;
+	border-radius: 5px;
+}
