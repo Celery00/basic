@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./layer/layer.mobile.css">
+</head>
+<body>
+    
+    <script src="./layer/layer.mobile.js"></script>
+    <script>
+        layer.confirm({
+            title: 'Title',
+            content: 'Test confirm modal',
+            buttons: [{
+                type: 'default',
+                text: 'Cancel',
+                onClick () {
+                    console.log('err')
+                }
+            }, {
+                type: 'primary',
+                text: 'Confirm',
+                onClick () {
+                    console.log('suc')
+                }
+            }]
+        })
+        
+
+        // layer.prompt('hello world!') 
+         
+
+       //  layer.loading({
+       //   text: 'loading...'
+       //  });
+
+       // setTimeout(function(){
+       //  layer.loading({
+       //      state : 'close',
+       //  })
+       // },2000)
+
+
+                
+    </script>
+</body>
+</html>
