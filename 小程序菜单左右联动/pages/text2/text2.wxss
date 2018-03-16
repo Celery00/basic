@@ -1,0 +1,63 @@
+/* pages/text2/text2.wxss */
+.main{
+  position: fixed;
+  top: 150px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 10;
+}
+.left{
+  width: 30%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background: #f6f6f6;
+}
+.left view{
+  margin-bottom: 10px;  
+  padding: 15px 15px;
+}
+.right{
+  width: 70%;
+  position: absolute;
+  left: 30%;
+  right: 0;
+  top:0; 
+  bottom: 0;
+  height: 100%;
+  background: #fff;
+}
+.right .title{
+  background: #eee;
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+}
+.right .center{
+  height: 80px;
+  line-height: 80px;
+  border-bottom:1px solid #ccc; 
+} 
+
+.red{
+  color: red!important;
+  background: #fff;
+}
+
+.top{
+  top:0!important;
+}
+.none{
+  display: none;
+}
+.title{
+  height: 150px;
+  line-height: 150px;
+  background: red;
+  text-align: center;
+}
+
