@@ -5,7 +5,7 @@
   </view>
   <view class="main {{top?'top':''}}">
     <!-- <navigator url='../test3/test3'>test3</navigator> -->
-    <scroll-view scroll-y class='left' scroll-with-animation='true' scroll-into-view="{{'in'+indexB}}"  bindscroll='bindscrollB' scroll-top="{{scrollTop}}"  bindtouchstart='touchstart'>
+    <scroll-view scroll-y class='left' scroll-with-animation='true' scroll-into-view="{{'in'+indexB}}"  bindscroll='bindscrollB' scroll-top="{{scrollTopLeft}}"  bindtouchstart='touchstart'>
       <view class="{{indexA==item.id?'red':''}}" wx:for="{{left}}" wx:key='item' bindtap='changeA' id='{{"in"+item.id}}' data-id='{{item.id}}'>{{item.main}}</view>
     </scroll-view>
     <scroll-view scroll-y bindscroll='bindscroll' scroll-with-animation='true' scroll-into-view="{{'inToView'+vieid}}" class='right' lower-threshold='20' bindscrolltolower='bindscrolltolower'>

@@ -188,7 +188,7 @@ Page({
       },
     
     ],
-    scrollTop:0,
+    scrollTopLeft:0,
     scrollTopB:0,
     indexA:0,
     indexB:0,
@@ -233,7 +233,7 @@ Page({
     
     if (this.data.scrollTopB<=4) {
       this.setData({
-        scrollTop: 0,
+        scrollTopLeft: 0,
         top:false
       })
     }else{
